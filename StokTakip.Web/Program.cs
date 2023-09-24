@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using StokTakip.DataAccess.Concrete.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<StokTakipDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 var app = builder.Build();
 
