@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StokTakip.Entity\StokTakip.Entity.csproj" />
-  </ItemGroup>
-
 </Project>
