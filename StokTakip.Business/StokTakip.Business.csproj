@@ -10,4 +10,8 @@
     <ProjectReference Include="..\StokTakip.DataAccess\StokTakip.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+  </ItemGroup>
+
 </Project>
