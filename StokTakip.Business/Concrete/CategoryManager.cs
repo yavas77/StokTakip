@@ -1,4 +1,5 @@
-﻿using StokTakip.DataAccess.Concrete.Contexts;
+﻿using StokTakip.DataAccess.Abstract;
+using StokTakip.DataAccess.Concrete.Contexts;
 using StokTakip.DataAccess.Concrete.EfCore;
 using StokTakip.Entity.Concrete;
 using System;
@@ -11,16 +12,15 @@ namespace StokTakip.Business.Concrete
 {
     public class CategoryManager
     {
-        private readonly CategoryRepository _categoryRepository;
-
-        public CategoryManager(StokTakipDbContext context)
+        private readonly ICategoryDAL _categoryDAL;
+        public CategoryManager(ICategoryDAL categoryDAL)
         {
-            _categoryRepository = new CategoryRepository(context);
+            _categoryDAL = categoryDAL;
         }
 
         public bool Add(Category category)
         {
-            int result = _categoryRepository.Add(category);
+            int result = _categoryDAL.Add(category);
 
             if (result > 0)
                 return true;
@@ -30,7 +30,7 @@ namespace StokTakip.Business.Concrete
 
         public bool Delete(Category category)
         {
-            int result = _categoryRepository.Delete(category);
+            int result = _categoryDAL.Delete(category);
 
             if (result > 0)
                 return true;
