@@ -9,36 +9,11 @@ using System.Threading.Tasks;
 
 namespace StokTakip.DataAccess.Concrete.EfCore
 {
-    public class CategoryRepository : ICategoryDAL
+    public class CategoryRepository : BaseRepository<Category>, ICategoryDAL
     {
-        private readonly StokTakipDbContext _context;
-
-        public CategoryRepository(StokTakipDbContext context)
+        public CategoryRepository(StokTakipDbContext context) : base(context)
         {
-            _context = context;
         }
-
-        public int Add(Category category)
-        {
-            _context.Categories.Add(category);
-            return _context.SaveChanges();
-        }
-
-        public int Update(Category category)
-        {
-            _context.Categories.Update(category);
-            return _context.SaveChanges();
-        }
-
-        public int Delete(Category category)
-        {
-            _context.Categories.Remove(category);
-            return _context.SaveChanges();
-        }
-
-        public List<Category> GetAll()
-        {
-            return _context.Categories.ToList();
-        }
+    
     }
 }

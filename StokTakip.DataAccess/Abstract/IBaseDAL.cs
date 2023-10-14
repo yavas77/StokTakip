@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace StokTakip.DataAccess.Abstract
 {
-    public interface ICategoryDAL : IBaseDAL<Category>
+    public interface IBaseDAL<TEntity> where TEntity : class
     {
+        int Add(TEntity entity);
+        int Update(TEntity entity);
+        int Delete(TEntity entity);
+        List<TEntity> GetAll();
     }
 }

@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace StokTakip.DataAccess.Abstract
 {
-    public interface IProductDAL
+    public interface IProductDAL : IBaseDAL<Product>
     {
-        int Add(Product product);
-        int Update(Product product);
-        int Delete(Product product);
-        List<Product> GetAll();
+
     }
 }
