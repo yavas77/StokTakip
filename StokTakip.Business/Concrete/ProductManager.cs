@@ -1,7 +1,5 @@
 ﻿using StokTakip.Business.Abstract;
 using StokTakip.DataAccess.Abstract;
-using StokTakip.DataAccess.Concrete.Contexts;
-using StokTakip.DataAccess.Concrete.EfCore;
 using StokTakip.Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -11,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace StokTakip.Business.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class ProductManager : IProductService
     {
-        private readonly ICategoryDAL _categoryDAL;
-        public CategoryManager(ICategoryDAL categoryDAL)
+        private readonly IProductDAL _productDAL;
+
+        public ProductManager(IProductDAL productDAL)
         {
-            _categoryDAL = categoryDAL;
+            _productDAL = productDAL;
         }
 
-        public bool Add(Category category)
+        public bool Add(Product entity)
         {
-            int result = _categoryDAL.Add(category);
+            int result = _productDAL.Add(entity);
 
             if (result > 0)
                 return true;
@@ -29,9 +28,10 @@ namespace StokTakip.Business.Concrete
                 return false;
         }
 
-        public bool Delete(Category category)
+        public bool Delete(Product entity)
         {
-            int result = _categoryDAL.Delete(category);
+
+            int result = _productDAL.Delete(entity);
 
             if (result > 0)
                 return true;
@@ -39,14 +39,15 @@ namespace StokTakip.Business.Concrete
                 return false;
         }
 
-        public List<Category> GetAll()
+        public List<Product> GetAll()
         {
-            return _categoryDAL.GetAll();
+            return _productDAL.GetAll();
         }
 
-        public bool Update(Category entity)
+        public bool Update(Product entity)
         {
-            int result = _categoryDAL.Update(entity);
+
+            int result = _productDAL.Update(entity);
 
             if (result > 0)
                 return true;

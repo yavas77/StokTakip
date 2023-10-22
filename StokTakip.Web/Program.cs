@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using StokTakip.Business.Abstract;
+using StokTakip.Business.Concrete;
+using StokTakip.DataAccess.Abstract;
 using StokTakip.DataAccess.Concrete.Contexts;
+using StokTakip.DataAccess.Concrete.EfCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StokTakipDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICategoryDAL, CategoryRepository>();
 
 var app = builder.Build();
 
