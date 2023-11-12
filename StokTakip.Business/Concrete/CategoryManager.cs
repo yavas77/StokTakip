@@ -1,4 +1,6 @@
-﻿using StokTakip.Business.Abstract;
+﻿using AutoMapper;
+using StokTakip.Business.Abstract;
+using StokTakip.Business.Concrete.DTOs.Categories;
 using StokTakip.DataAccess.Abstract;
 using StokTakip.DataAccess.Concrete.Contexts;
 using StokTakip.DataAccess.Concrete.EfCore;
@@ -14,13 +16,23 @@ namespace StokTakip.Business.Concrete
     public class CategoryManager : ICategoryService
     {
         private readonly ICategoryDAL _categoryDAL;
-        public CategoryManager(ICategoryDAL categoryDAL)
+        private readonly IMapper _mapper;
+        public CategoryManager(ICategoryDAL categoryDAL, IMapper mapper)
         {
             _categoryDAL = categoryDAL;
+            _mapper = mapper;
         }
 
-        public bool Add(Category category)
+        public bool Add(AddCategoryDTO addCategoryDTO)
         {
+            //Category category = new Category
+            //{
+            //    Name = addCategoryDTO.Name
+            //};
+
+            Category category = _mapper.Map<Category>(addCategoryDTO);
+
+
             int result = _categoryDAL.Add(category);
 
             if (result > 0)

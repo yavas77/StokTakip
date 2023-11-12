@@ -18,7 +18,7 @@ namespace StokTakip.Web.Controllers
 
         public IActionResult Index()
         {
-            var categoryList = _categoryService.GetAll();
+            //var categoryList = _categoryService.GetAll();
             return View();
         }
 

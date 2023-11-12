@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using StokTakip.Business.Abstract;
 using StokTakip.Business.Concrete;
+using StokTakip.Business.Concrete.DTOs.Categories;
 using StokTakip.DataAccess.Abstract;
 using StokTakip.DataAccess.Concrete.Contexts;
 using StokTakip.DataAccess.Concrete.EfCore;
@@ -14,6 +15,9 @@ builder.Services.AddDbContext<StokTakipDbContext>(option => option.UseSqlServer(
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDAL, CategoryRepository>();
+
+builder.Services.AddAutoMapper(typeof(AddCategoryDTO));
+
 
 var app = builder.Build();
 
